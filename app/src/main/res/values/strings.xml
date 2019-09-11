@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">WhackABird</string>
+    <string name="txt_student_name">student\'s name</string>
+    <string name="txt_college_name">college name</string>
+    <string name="txt_course_name">course name</string>
+    <string name="txt_course_grade">course grade</string>
+    <string name="btn_save">save</string>
+    <string name="btn_delete">delete</string>
+    <string name="title_activity_maps">Map</string>
+</resources>

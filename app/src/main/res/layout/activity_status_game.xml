@@ -11,7 +11,7 @@
     <TextView
         android:id="@+id/the_name"
         android:layout_width="match_parent"
-        android:layout_height="96dp"
+        android:layout_height="134dp"
         android:layout_centerInParent="true"
         android:gravity="center_horizontal|top"
         android:text="text massage "
@@ -42,11 +42,20 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="37dp" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="check your result in the Record Table"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:layout_above="@id/btn_record_table"/>
+
     <Button
         android:id="@+id/btn_record_table"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/the_name"
+        android:textSize="20dp"
         android:text="Record table" />
 
 </RelativeLayout>

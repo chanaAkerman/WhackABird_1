@@ -43,7 +43,8 @@ public class GameActivity extends AppCompatActivity {
     private TextView score;
 
     public String userName;
-    public int results = 0;
+    // lose -0 win-1
+    public int results = 1;
     public int scoreCounter = 0;
     public int missCounter = 0;
 
@@ -323,14 +324,9 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void UpdateScoreText(int newScore) {
-        if (newScore == 30) {
-            scoreCounter = 30;
-            results = 1;
-            showResults();
-            return;
-        }
         if (newScore == 0) {
             scoreCounter = 0;
+            results=0;
             showResults();
             return;
         }
@@ -339,6 +335,7 @@ public class GameActivity extends AppCompatActivity {
 
     public void UpdateMissText(int newMiss) {
         if (newMiss == 3) {
+            results=0;
             showResults();
         }
         miss.setText("Miss: " + missCounter);

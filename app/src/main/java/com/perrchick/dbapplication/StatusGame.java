@@ -71,7 +71,7 @@ import com.google.firebase.database.FirebaseDatabase;
             if(results==0)
                 name_text.setText(userName+"\nYou Lost :( try again");
             else
-                name_text.setText(userName+"\nYou Won:)");
+                name_text.setText("Great Job"+userName+":)\nYou earned "+score+" points");
 
             if(flag==0)
                 savePlayer();

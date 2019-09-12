@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.varunest:sparkbutton:1.0.5@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/6bdb9b325e61d3998301f262b0482558/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/6bdb9b325e61d3998301f262b0482558/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.varunest/sparkbutton/1.0.5/cd428479962d79d17302a6050fb5056bf8c7f8e7/sparkbutton-1.0.5-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

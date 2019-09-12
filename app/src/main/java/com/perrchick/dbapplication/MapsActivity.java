@@ -18,6 +18,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     public static final String EXTRA_TEXT = "com.example.application.whackABird.EXTRA_TEXT";
     public static final String EXTRA_NUMBER = "com.example.application.whackABird.EXTRA_NUMBER";
+
+    public static final String EXTRA_OTHERNAME = "com.example.application.whackABird.EXTRA_OTHERNAME";
+    public static final String EXTRA_SCORE = "com.example.application.whackABird.EXTRA_SCORE";
+
     public static final String EXTRA_TIME = "com.example.application.whackABird.EXTRA_TIME";
     public static final String EXTRA_LAT = "com.example.application.whackABird.EXTRA_LAT";
     public static final String EXTRA_LNG= "com.example.application.whackABird.EXTRA_LNG";
@@ -26,6 +30,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     public String userName;
     public int results;
+    public String originalName;
+    public int originalResults;
+
+
     public int time;
     public double lat;
     public double lng;
@@ -43,6 +51,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Intent myIntent = getIntent();
         userName = myIntent.getStringExtra(RecordGame.EXTRA_TEXT);
         results = myIntent.getIntExtra(RecordGame.EXTRA_NUMBER, 0);
+
+        originalName = myIntent.getStringExtra(RecordGame.EXTRA_OTHERNAME);
+        originalResults = myIntent.getIntExtra(RecordGame.EXTRA_SCORE, 0);
+
         time = myIntent.getIntExtra(RecordGame.EXTRA_TIME, 0);
 
         lat = Double.parseDouble(myIntent.getStringExtra(RecordGame.EXTRA_LAT));
@@ -87,6 +99,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //putting artist name and id to intent
         intent.putExtra(EXTRA_TEXT, userName);
         intent.putExtra(EXTRA_NUMBER, results);
+        intent.putExtra(EXTRA_OTHERNAME, originalName);
+        intent.putExtra(EXTRA_SCORE, originalResults);
         intent.putExtra(EXTRA_TIME, time);
 
         //starting the activity with intent

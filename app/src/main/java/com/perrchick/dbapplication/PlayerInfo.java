@@ -11,10 +11,18 @@ import android.widget.TextView;
 public class PlayerInfo extends AppCompatActivity {
     public static final String EXTRA_TEXT = "com.example.application.whackABird.EXTRA_TEXT";
     public static final String EXTRA_NUMBER = "com.example.application.whackABird.EXTRA_NUMBER";
+
+    public static final String EXTRA_OTHERNAME = "com.example.application.whackABird.EXTRA_OTHERNAME";
+    public static final String EXTRA_SCORE = "com.example.application.whackABird.EXTRA_SCORE";
+
     public static final String EXTRA_TIME = "com.example.application.whackABird.EXTRA_TIME";
 
     public String name;
     public int score;
+
+    public String originalName;
+    public int originalSCore;
+
     public int time;
 
     public TextView tName;
@@ -31,6 +39,9 @@ public class PlayerInfo extends AppCompatActivity {
         Intent myIntent = getIntent();
         name = myIntent.getStringExtra(RecordGame.EXTRA_TEXT);
         score = myIntent.getIntExtra(RecordGame.EXTRA_NUMBER, 0);
+        originalName = myIntent.getStringExtra(RecordGame.EXTRA_OTHERNAME);
+        originalSCore = myIntent.getIntExtra(RecordGame.EXTRA_SCORE, 0);
+
         time = myIntent.getIntExtra(RecordGame.EXTRA_TIME, 0);
 
         tName=(TextView)findViewById(R.id.nameText);
@@ -52,9 +63,9 @@ public class PlayerInfo extends AppCompatActivity {
 
     private void backToRecordTeble() {
         Intent intent = new Intent(this,RecordGame.class);
-        intent.putExtra(EXTRA_TEXT,name);
-        intent.putExtra(EXTRA_NUMBER,score);
-        intent.putExtra(EXTRA_TIME,time);
+        intent.putExtra(EXTRA_TEXT,originalName);
+        intent.putExtra(EXTRA_NUMBER,originalSCore);
+        intent.putExtra(EXTRA_TIME,0);
         startActivity(intent);
     }
 }

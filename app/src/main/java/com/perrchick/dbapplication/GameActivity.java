@@ -104,6 +104,7 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 count_timer.setText("Finished");
+                results=0;
                 showResults();
             }
         };

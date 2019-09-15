@@ -71,7 +71,7 @@ import com.google.firebase.database.FirebaseDatabase;
             if(results==0)
                 name_text.setText(userName+"\nYou Lost :( try again");
             else
-                name_text.setText("Great Job"+userName+":)\nYou earned "+score+" points");
+                name_text.setText("Great Job "+userName+":)\nYou earned "+score+" points");
 
             if(flag==0)
                 savePlayer();
@@ -103,6 +103,8 @@ import com.google.firebase.database.FirebaseDatabase;
             Intent intent  = new Intent(this,GameActivity.class);
             intent.putExtra(EXTRA_TEXT,userName);
             startActivity(intent);
+
+            finish();
         }
 
         public void openRecordActivity() {
@@ -112,6 +114,8 @@ import com.google.firebase.database.FirebaseDatabase;
             intent.putExtra(EXTRA_TIME,time);
             intent.putExtra(EXTRA_RESULTS,results);
             startActivity(intent);
+
+            finish();
         }
 
         public void savePlayer(){

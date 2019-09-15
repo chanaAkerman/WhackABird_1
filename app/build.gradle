@@ -62,5 +62,6 @@ dependencies {
 
     // location play services
     implementation 'com.google.android.gms:play-services-location:15.0.1'
+    implementation 'org.jetbrains:annotations-java5:15.0'
 
 }

@@ -5,12 +5,14 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -25,13 +27,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
-
     public static final String EXTRA_TEXT = "com.example.application.whackABird.EXTRA_TEXT";
     public static final String EXTRA_NUMBER = "com.example.application.whackABird.EXTRA_NUMBER";
-
-    public static final String EXTRA_OTHERNAME = "com.example.application.whackABird.EXTRA_OTHERNAME";
-    public static final String EXTRA_SCORE = "com.example.application.whackABird.EXTRA_SCORE";
-
     public static final String EXTRA_TIME = "com.example.application.whackABird.EXTRA_TIME";
     public static final String EXTRA_LAT = "com.example.application.whackABird.EXTRA_LAT";
     public static final String EXTRA_LNG= "com.example.application.whackABird.EXTRA_LNG";
@@ -40,13 +37,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     public String userName;
     public int results;
-    public String originalName;
-    public int originalResults;
 
     //our database reference object
     DatabaseReference databasePlayers;
     //a list to store all the players from firebase database
     List<Player> players;
+
+    ArrayList<MarkerOptions> markerList;
 
 
     public int time;
@@ -66,15 +63,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Intent myIntent = getIntent();
         userName = myIntent.getStringExtra(RecordGame.EXTRA_TEXT);
         results = myIntent.getIntExtra(RecordGame.EXTRA_NUMBER, 0);
-
-        originalName = myIntent.getStringExtra(RecordGame.EXTRA_OTHERNAME);
-        originalResults = myIntent.getIntExtra(RecordGame.EXTRA_SCORE, 0);
-
         time = myIntent.getIntExtra(RecordGame.EXTRA_TIME, 0);
 
         //getting the reference of artists node
         databasePlayers = FirebaseDatabase.getInstance().getReference("players");
         players = new ArrayList<>();
+        markerList=new ArrayList<>();
 
         lat = Double.parseDouble(myIntent.getStringExtra(RecordGame.EXTRA_LAT));
         lng = Double.parseDouble(myIntent.getStringExtra(RecordGame.EXTRA_LNG));
@@ -94,6 +88,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         players.add(player);
 
                 }
+                // now we have all the players
+                addLocations();
             }
 
             @Override
@@ -101,47 +97,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
     }
-
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+    }
 
-        mMap.addMarker(new MarkerOptions().position(location).title("Marker"));
-        CameraUpdate update = CameraUpdateFactory.newLatLngZoom(location,15);
-        mMap.moveCamera(update);
-
-        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-            @Override
-            public boolean onMarkerClick(Marker marker) {
-                showPlayer();
-                return true;
-            }
-        });
-        for (int i = 0; i < players.size(); i++) {
-            mMap.addMarker(new MarkerOptions().position(players.get(i).getPlayerLocation()).title("Marker"));
+    private void addLocations(){
+        for(int i=0;i<players.size();i++) {
+            drawMarker(players.get(i).getPlayerLocation(),
+                    players.get(i).getName(),
+                    players.get(i).getScore());
         }
     }
 
-    private void showPlayer() {
-        Intent intent = new Intent(MapsActivity.this, PlayerInfo.class);
-
-        //putting artist name and id to intent
-        intent.putExtra(EXTRA_TEXT, userName);
-        intent.putExtra(EXTRA_NUMBER, results);
-        intent.putExtra(EXTRA_OTHERNAME, originalName);
-        intent.putExtra(EXTRA_SCORE, originalResults);
-        intent.putExtra(EXTRA_TIME, time);
-
-        //starting the activity with intent
-        startActivity(intent);
+    private void drawMarker(LatLng location,String name,int score){
+        MarkerOptions markerOptions = new MarkerOptions();
+        markerOptions.position(location)
+                .title(name)
+                .snippet("score: "+score);
+        mMap.addMarker(markerOptions);
     }
 }
+
+

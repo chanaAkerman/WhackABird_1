@@ -71,5 +71,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, GameActivity.class);
         intent.putExtra(EXTRA_TEXT, userName);
         startActivity(intent);
+
+        finish();
     }
 }

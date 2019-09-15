@@ -27,10 +27,6 @@ import java.util.List;
 public class RecordGame extends AppCompatActivity {
     public static final String EXTRA_TEXT = "com.example.application.whackABird.EXTRA_TEXT";
     public static final String EXTRA_NUMBER = "com.example.application.whackABird.EXTRA_NUMBER";
-
-    public static final String EXTRA_OTHERNAME = "com.example.application.whackABird.EXTRA_OTHERNAME";
-    public static final String EXTRA_SCORE = "com.example.application.whackABird.EXTRA_SCORE";
-
     public static final String EXTRA_TIME = "com.example.application.whackABird.EXTRA_TIME";
     public static final String EXTRA_RESULTS = "com.example.application.whackABird.EXTRA_RESULTS";
     public static final String EXTRA_FLAG = "com.example.application.whackABird.EXTRA_FLAG";
@@ -88,6 +84,8 @@ public class RecordGame extends AppCompatActivity {
 
                     //starting the activity with intent
                     startActivity(intent);
+
+                    finish();
                 }
             });
 
@@ -147,8 +145,6 @@ public class RecordGame extends AppCompatActivity {
                     //putting artist name and id to intent
                     intent.putExtra(EXTRA_TEXT, player.getName());
                     intent.putExtra(EXTRA_NUMBER, player.getScore());
-                    intent.putExtra(EXTRA_OTHERNAME, userName);
-                    intent.putExtra(EXTRA_SCORE, score);
                     intent.putExtra(EXTRA_TIME, player.getTime());
                     intent.putExtra(EXTRA_LAT, player.getLat());
                     intent.putExtra(EXTRA_LNG, player.getLng());

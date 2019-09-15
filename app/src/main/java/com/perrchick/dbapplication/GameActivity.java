@@ -104,7 +104,6 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 count_timer.setText("Finished");
-                results=0;
                 showResults();
             }
         };
@@ -350,6 +349,8 @@ public class GameActivity extends AppCompatActivity {
         intent.putExtra(EXTRA_TIME, 30 - counter);
         intent.putExtra(EXTRA_RESULTS, results);
         startActivity(intent);
+
+        finish();
     }
 
 

@@ -100,6 +100,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+
+        MarkerOptions markerOptions = new MarkerOptions().position(location).title(userName).snippet("score: "+results);
+        mMap.addMarker(markerOptions);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location,15));
     }
 
     private void addLocations(){

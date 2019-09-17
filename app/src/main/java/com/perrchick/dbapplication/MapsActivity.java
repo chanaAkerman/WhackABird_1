@@ -90,6 +90,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
                 // now we have all the players
                 addLocations();
+                showMarker();
             }
 
             @Override
@@ -100,9 +101,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+    }
 
-        MarkerOptions markerOptions = new MarkerOptions().position(location).title(userName).snippet("score: "+results);
-        mMap.addMarker(markerOptions);
+    public void showMarker(){
+        drawMarker(location,userName,results);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location,15));
     }
 
